@@ -1,0 +1,11 @@
+#Using mailtrap to fake email senders - https://mailtrap.io 
+spring.mail:
+  host: ${bsc_email_hostname}
+  port: ${bsc_email_port}
+  username: ${bsc_email_username}
+  password: ${bsc_email_password}
+  properties.mail.smtp:
+    auth: true
+    starttls.enable: true
+
+bsc.gms.email.from: noreply-local@bsc.gms.com.br
