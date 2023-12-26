@@ -14,7 +14,11 @@ class EmailValidationStrategy {
 	void validate() {
 		
 		var erros = new StringBuilder();
-		
+
+		if(TextValidation.isBlankOrNull(email.getId())) {
+			erros.append("E-mail id cannot be null").append("\n");
+		}
+
 		if(TextValidation.isBlankOrNull(email.getBody())) {
 			erros.append("E-mail body cannot be null").append("\n");
 		}
@@ -23,7 +27,7 @@ class EmailValidationStrategy {
 			erros.append("E-mail subject cannot be null").append("\n");
 		}
 		
-		if(email.getTo() == null || email.getTo().length == 0) {
+		if(!email.hasTo()) {
 			erros.append("E-mail must havet one ou mor destinations").append("\n");
 		}
 		

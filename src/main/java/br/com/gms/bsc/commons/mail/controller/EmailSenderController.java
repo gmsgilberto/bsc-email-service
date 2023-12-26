@@ -7,28 +7,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.gms.bsc.commons.mail.controller.request.EmailRequestWithAttachment;
-import br.com.gms.bsc.commons.mail.controller.request.EmailSimpleRequest;
+import br.com.gms.bsc.commons.mail.controller.adapters.EmailMapper;
+import br.com.gms.bsc.commons.mail.controller.request.EmailRequest;
 import br.com.gms.bsc.commons.mail.service.EmailSender;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("e-mail/send")
+@RequestMapping("e-mail")
 @AllArgsConstructor
 public class EmailSenderController {
 	
 	private EmailSender emailSender;
+	private EmailMapper emailMapper;
 	
-	@PostMapping(path = "no-attachments")
-	public ResponseEntity<String> sendWithoutAttachment( @RequestBody EmailSimpleRequest email){
-		this.emailSender.sendEmail(email.toModel());
-		return ResponseEntity.status(HttpStatus.CREATED).body("ok");
-	}
-	
-	@PostMapping(path = "with-attachments")
-	public ResponseEntity<String> send( @RequestBody EmailRequestWithAttachment email){
-		this.emailSender.sendEmail(email.toModel());
-		return ResponseEntity.status(HttpStatus.CREATED).body("ok");
+	@PostMapping
+	public ResponseEntity<String> sendEmail( @RequestBody EmailRequest request){
+		var email = this.emailMapper.toModel(request);
+		email = this.emailSender.sendEmail(email);
+		return ResponseEntity.status(HttpStatus.CREATED).body(email.getId());
 	}
 	
 	

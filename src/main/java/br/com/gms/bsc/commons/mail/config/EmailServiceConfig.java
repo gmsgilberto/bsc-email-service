@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import br.com.gms.bsc.commons.mail.service.EmailSender;
-import br.com.gms.bsc.commons.mail.service.impl.EmailSenderJavaMail;
+import br.com.gms.bsc.commons.mail.service.impl.EmailSenderWithJavaMail;
 
 @Configuration
 public class EmailServiceConfig {
@@ -17,7 +17,7 @@ public class EmailServiceConfig {
 	
 	@Bean
 	EmailSender emailSender(final JavaMailSender javaMailSender) {
-		return new EmailSenderJavaMail(javaMailSender, this.emailFrom);
+		return new EmailSenderWithJavaMail(javaMailSender, this.emailFrom);
 	}
 	
 }

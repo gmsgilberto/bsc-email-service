@@ -9,27 +9,27 @@ import lombok.NonNull;
 class AttachmentValidationStrategy {
 	
 	@NonNull
-	private Attachment[] attachments;
+	private java.util.List<Attachment> attachments;
 	
 	void validate() {
 		
-		if(this.attachments != null && this.attachments.length > 0) {
+		if(this.attachments != null) {
 			
 			var erros = new StringBuilder();
 			
 			Attachment attachment;
-			for(int index = 0; index < this.attachments.length; index++) {
-				attachment = this.attachments[index];
+			for(int index = 0; index < this.attachments.size(); index++) {
+				attachment = this.attachments.get(index);
 				
-				if(TextValidation.isBlankOrNull(attachment.name())) {
+				if(TextValidation.isBlankOrNull(attachment.getName())) {
 					erros.append("Attachment["+index+"] must have a name.");
 				}
 
-				if(TextValidation.isBlankOrNull(attachment.type())) {
+				if(TextValidation.isBlankOrNull(attachment.getName())) {
 					erros.append("Attachment["+index+"] must have a explicit type (sample: pdf, xlsx, etc.)");
 				}
 				
-				if(TextValidation.isBlankOrNull(attachment.base64Content())) {
+				if(!attachment.hasContent()) {
 					erros.append("Attachment["+index+"] has no content.");
 				}
 
