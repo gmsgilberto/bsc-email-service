@@ -8,4 +8,11 @@ spring.mail:
     auth: true
     starttls.enable: true
 
-bsc.gms.email.from: noreply-local@bsc.gms.com.br
+bsc.gms:
+  email.from: noreply-local@bsc.gms.com.br
+
+spring.activemq:
+  broker-url: tcp://localhost:61616
+  user: admin
+  password:
+      

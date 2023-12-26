@@ -8,7 +8,7 @@ import br.com.gms.bsc.commons.mail.exceptions.SendEmailException;
 import br.com.gms.bsc.commons.mail.model.Attachment;
 import br.com.gms.bsc.commons.mail.model.AttachmentType;
 import br.com.gms.bsc.commons.mail.model.Email;
-import br.com.gms.bsc.commons.mail.service.EmailSender;
+import br.com.gms.bsc.commons.mail.service.EmailService;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @AllArgsConstructor
 @Slf4j
-public class EmailSenderWithJavaMail implements EmailSender {
+public class EmailServiceImpl implements EmailService {
 
 	private final JavaMailSender mailSender;
 	private final String from;
@@ -65,14 +65,14 @@ public class EmailSenderWithJavaMail implements EmailSender {
 	private void addAttachments(Email email, MimeMessageHelper helper) throws MessagingException {
 		for(Attachment attachment: email.getAttachments()) {
 			if(attachment.getType() == AttachmentType.INLINE) {
-				helper.addInline(attachment.getName(),new ByteArrayResource(attachment.getContent()) {
+				helper.addInline(attachment.getName(),new ByteArrayResource(attachment.bytes()) {
 					@Override
 					public String getFilename() {
 						return attachment.getName();
 					}
 				});
 			}else {
-				helper.addAttachment(attachment.getName(),new ByteArrayResource(attachment.getContent()));
+				helper.addAttachment(attachment.getName(),new ByteArrayResource(attachment.bytes()));
 			}
 		}
 	}

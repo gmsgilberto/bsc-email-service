@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gms.bsc.commons.mail.controller.adapters.EmailMapper;
 import br.com.gms.bsc.commons.mail.controller.request.EmailRequest;
-import br.com.gms.bsc.commons.mail.service.EmailSender;
+import br.com.gms.bsc.commons.mail.service.EmailService;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class EmailSenderController {
 	
-	private EmailSender emailSender;
+	private EmailService emailSender;
 	private EmailMapper emailMapper;
 	
 	@PostMapping

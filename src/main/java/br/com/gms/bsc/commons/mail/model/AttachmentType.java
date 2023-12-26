@@ -4,6 +4,4 @@ public enum AttachmentType {
 
 	ATTACHMENT,
 	INLINE
-	
-	
 }
