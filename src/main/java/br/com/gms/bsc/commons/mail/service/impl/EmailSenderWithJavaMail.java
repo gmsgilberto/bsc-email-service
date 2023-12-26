@@ -6,8 +6,10 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 
 import br.com.gms.bsc.commons.mail.exceptions.SendEmailException;
 import br.com.gms.bsc.commons.mail.model.Attachment;
+import br.com.gms.bsc.commons.mail.model.AttachmentType;
 import br.com.gms.bsc.commons.mail.model.Email;
 import br.com.gms.bsc.commons.mail.service.EmailSender;
+import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,17 +45,11 @@ public class EmailSenderWithJavaMail implements EmailSender {
 				helper.addTo(to);
 			}
 			
-			if(email.hasCc()) {
-				for(String cc : email.getCc()) {
-					helper.addCc(cc);
-				}
+			for(String cc : email.getCc()) {
+				helper.addCc(cc);
 			}
 			
-			if(email.hasAttachements()) {
-				for(Attachment attachment: email.getAttachments()) {
-					helper.addAttachment(attachment.getName(),new ByteArrayResource(attachment.getContent()));
-				}
-			}
+			this.addAttachments(email, helper);
 	
 			this.mailSender.send(emailMessage);
 			
@@ -62,6 +58,23 @@ public class EmailSenderWithJavaMail implements EmailSender {
 		}
 		
 		return email;
+	}
+
+	
+	
+	private void addAttachments(Email email, MimeMessageHelper helper) throws MessagingException {
+		for(Attachment attachment: email.getAttachments()) {
+			if(attachment.getType() == AttachmentType.INLINE) {
+				helper.addInline(attachment.getName(),new ByteArrayResource(attachment.getContent()) {
+					@Override
+					public String getFilename() {
+						return attachment.getName();
+					}
+				});
+			}else {
+				helper.addAttachment(attachment.getName(),new ByteArrayResource(attachment.getContent()));
+			}
+		}
 	}
 	
 }
