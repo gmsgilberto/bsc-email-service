@@ -7,8 +7,8 @@ services:
       - '61616:61616'
       - '8161:8161'
     networks:
-      - local-network
+      - bsc-gms-network
 
 networks:
-  local-network:
+  bsc-gms-network:
     driver: bridge
