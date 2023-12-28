@@ -6,7 +6,7 @@ package br.com.gms.bsc.commons.mail.exceptions;
 /**
  * 
  */
-public class SendEmailException extends RuntimeException {
+public class SendEmailException extends IllegalArgumentException {
 
 	private static final long serialVersionUID = 1L;
 	

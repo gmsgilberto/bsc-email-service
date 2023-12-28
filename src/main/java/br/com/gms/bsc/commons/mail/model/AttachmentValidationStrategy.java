@@ -22,15 +22,15 @@ class AttachmentValidationStrategy {
 				attachment = this.attachments.get(index);
 				
 				if(TextValidation.isBlankOrNull(attachment.getName())) {
-					erros.append("Attachment["+index+"] must have a name.");
+					erros.append("Attachment["+index+"] must have a name.").append("; ");
 				}
 
 				if(TextValidation.isBlankOrNull(attachment.getName())) {
-					erros.append("Attachment["+index+"] must have a explicit type (sample: pdf, xlsx, etc.)");
+					erros.append("Attachment["+index+"] must have a explicit type (sample: pdf, xlsx, etc.)").append("; ");
 				}
 				
 				if(!attachment.hasContent()) {
-					erros.append("Attachment["+index+"] has no content.");
+					erros.append("Attachment["+index+"] has no content.").append("; ");
 				}
 
 			}
