@@ -1,4 +1,4 @@
-package br.com.gms.bsc.commons.mail.service.impl.queue;
+package br.com.gms.bsc.commons.mail.application.service.impl;
 
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;

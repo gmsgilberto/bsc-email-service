@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import br.com.gms.bsc.commons.mail.application.service.impl.SendEmailServiceQueue;
+import br.com.gms.bsc.commons.mail.application.service.impl.SendEmailServiceWithJavaMail;
 import br.com.gms.bsc.commons.mail.core.service.SendEmailService;
-import br.com.gms.bsc.commons.mail.service.impl.javamail.SendEmailServiceWithJavaMail;
-import br.com.gms.bsc.commons.mail.service.impl.queue.SendEmailServiceQueue;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 

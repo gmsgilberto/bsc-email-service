@@ -1,4 +1,4 @@
-package br.com.gms.bsc.commons.mail.service.impl.javamail;
+package br.com.gms.bsc.commons.mail.application.service.impl;
 
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.javamail.JavaMailSender;
