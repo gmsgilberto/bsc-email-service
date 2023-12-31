@@ -3,7 +3,7 @@ package br.com.gms.bsc.commons.mail.controller.adapters;
 import org.springframework.stereotype.Component;
 
 import br.com.gms.bsc.commons.mail.controller.request.EmailRequest;
-import br.com.gms.bsc.commons.mail.model.Email;
+import br.com.gms.bsc.commons.mail.core.model.EmailPrototype;
 import lombok.AllArgsConstructor;
 
 @Component
@@ -12,8 +12,8 @@ public class EmailMapper {
 
 	private AttachmentMapper attachmentMapper;
 	
-	public Email toModel(EmailRequest request) {
-		var email = new Email();
+	public EmailPrototype toModel(EmailRequest request) {
+		var email = new EmailPrototype();
 		
 		request.getTo().forEach(to -> email.addTo(to));
 		request.getCc().forEach(cc -> email.addCc(cc));

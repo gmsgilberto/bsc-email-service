@@ -1,4 +1,4 @@
-package br.com.gms.bsc.commons.mail.model;
+package br.com.gms.bsc.commons.mail.core.model;
 
 public enum AttachmentType {
 

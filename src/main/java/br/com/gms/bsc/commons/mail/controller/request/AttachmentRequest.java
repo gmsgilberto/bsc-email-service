@@ -2,7 +2,7 @@ package br.com.gms.bsc.commons.mail.controller.request;
 
 import java.io.Serializable;
 
-import br.com.gms.bsc.commons.mail.model.AttachmentType;
+import br.com.gms.bsc.commons.mail.core.model.AttachmentType;
 import lombok.Getter;
 import lombok.Setter;
 

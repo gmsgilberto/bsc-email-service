@@ -1,8 +1,8 @@
-package br.com.gms.bsc.commons.mail.model;
+package br.com.gms.bsc.commons.mail.core.model;
 
 import java.io.Serializable;
 
-import br.com.gms.bsc.commons.mail.file.Base64ContentAdapt;
+import br.com.gms.bsc.commons.mail.base64.Base64ContentAdapt;
 import lombok.Getter;
 import lombok.Setter;
 

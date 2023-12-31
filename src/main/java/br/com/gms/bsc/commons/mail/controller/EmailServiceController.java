@@ -9,23 +9,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gms.bsc.commons.mail.controller.adapters.EmailMapper;
 import br.com.gms.bsc.commons.mail.controller.request.EmailRequest;
-import br.com.gms.bsc.commons.mail.service.EmailService;
+import br.com.gms.bsc.commons.mail.core.service.SendEmailService;
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("e-mail")
 @AllArgsConstructor
-public class EmailSenderController {
+public class EmailServiceController {
 	
-	private EmailService emailSender;
+	private SendEmailService emailSender;
 	private EmailMapper emailMapper;
 	
 	@PostMapping
 	public ResponseEntity<String> sendEmail( @RequestBody EmailRequest request){
 		var email = this.emailMapper.toModel(request);
-		email = this.emailSender.sendEmail(email);
-		return ResponseEntity.status(HttpStatus.CREATED).body(email.getId());
+		final String emailId = this.emailSender.execute(email);
+		return ResponseEntity.status(HttpStatus.CREATED).body(emailId);
 	}
-	
 	
 }

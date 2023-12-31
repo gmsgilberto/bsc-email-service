@@ -1,4 +1,4 @@
-package br.com.gms.bsc.commons.mail.util;
+package br.com.gms.bsc.commons.mail.core.validation;
 
 public class TextValidation {
 

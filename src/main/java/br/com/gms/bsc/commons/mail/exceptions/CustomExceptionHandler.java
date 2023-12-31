@@ -1,4 +1,4 @@
-package br.com.gms.bsc.commons.mail.controller.advice;
+package br.com.gms.bsc.commons.mail.exceptions;
 
 import java.util.UUID;
 

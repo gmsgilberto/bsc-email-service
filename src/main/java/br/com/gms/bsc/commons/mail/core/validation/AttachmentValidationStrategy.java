@@ -1,25 +1,26 @@
-package br.com.gms.bsc.commons.mail.model;
+package br.com.gms.bsc.commons.mail.core.validation;
 
+import br.com.gms.bsc.commons.mail.core.model.Attachment;
+import br.com.gms.bsc.commons.mail.core.model.EmailPrototype;
+import br.com.gms.bsc.commons.mail.core.model.EmailValidationStrategy;
 import br.com.gms.bsc.commons.mail.exceptions.SendEmailException;
-import br.com.gms.bsc.commons.mail.util.TextValidation;
 import lombok.AllArgsConstructor;
-import lombok.NonNull;
 
 @AllArgsConstructor
-class AttachmentValidationStrategy {
+public class AttachmentValidationStrategy implements EmailValidationStrategy{
 	
-	@NonNull
-	private java.util.List<Attachment> attachments;
-	
-	void validate() {
+	@Override
+	public void execute(EmailPrototype email) throws SendEmailException {
 		
-		if(this.attachments != null) {
+		
+		if(email.hasAttachements()) {
 			
+			var attachments = email.getAttachments();
 			var erros = new StringBuilder();
 			
 			Attachment attachment;
-			for(int index = 0; index < this.attachments.size(); index++) {
-				attachment = this.attachments.get(index);
+			for(int index = 0; index < attachments.size(); index++) {
+				attachment = attachments.get(index);
 				
 				if(TextValidation.isBlankOrNull(attachment.getName())) {
 					erros.append("Attachment["+index+"] must have a name.").append("; ");

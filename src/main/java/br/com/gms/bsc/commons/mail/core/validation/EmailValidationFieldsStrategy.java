@@ -1,17 +1,25 @@
-package br.com.gms.bsc.commons.mail.model;
+package br.com.gms.bsc.commons.mail.core.validation;
 
+import br.com.gms.bsc.commons.mail.core.model.EmailPrototype;
+import br.com.gms.bsc.commons.mail.core.model.EmailValidationStrategy;
 import br.com.gms.bsc.commons.mail.exceptions.SendEmailException;
-import br.com.gms.bsc.commons.mail.util.TextValidation;
-import lombok.AllArgsConstructor;
-import lombok.NonNull;
 
-@AllArgsConstructor
-class EmailValidationStrategy {
+
+public class EmailValidationFieldsStrategy  implements EmailValidationStrategy{
 	
-	@NonNull
-	private Email email;
+	private final AttachmentValidationStrategy attachmentValidationStrategy;
 	
-	void validate() {
+	
+	public EmailValidationFieldsStrategy() {
+		super();
+		this.attachmentValidationStrategy = new AttachmentValidationStrategy();
+	}
+	
+	public void execute(EmailPrototype email) {
+		
+		if(email == null) {
+			throw new IllegalArgumentException("parameter email is null");
+		}
 		
 		var erros = new StringBuilder();
 
@@ -35,10 +43,7 @@ class EmailValidationStrategy {
 			throw new SendEmailException(erros.toString()); 
 		}
 		
-		if(email.hasAttachements()) {
-			var attachmentValidationStrategy = new AttachmentValidationStrategy(email.getAttachments());
-			attachmentValidationStrategy.validate();
-		}
+		this.attachmentValidationStrategy.execute(email);
 		
 	}
 	
