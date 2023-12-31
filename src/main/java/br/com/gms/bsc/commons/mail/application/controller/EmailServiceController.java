@@ -1,4 +1,4 @@
-package br.com.gms.bsc.commons.mail.controller;
+package br.com.gms.bsc.commons.mail.application.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.gms.bsc.commons.mail.controller.adapters.EmailMapper;
-import br.com.gms.bsc.commons.mail.controller.request.EmailRequest;
+import br.com.gms.bsc.commons.mail.application.controller.adapters.EmailMapper;
+import br.com.gms.bsc.commons.mail.application.controller.request.EmailRequest;
 import br.com.gms.bsc.commons.mail.core.service.SendEmailService;
 import lombok.AllArgsConstructor;
 

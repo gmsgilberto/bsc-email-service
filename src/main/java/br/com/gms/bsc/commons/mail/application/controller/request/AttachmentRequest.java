@@ -1,4 +1,4 @@
-package br.com.gms.bsc.commons.mail.controller.request;
+package br.com.gms.bsc.commons.mail.application.controller.request;
 
 import java.io.Serializable;
 

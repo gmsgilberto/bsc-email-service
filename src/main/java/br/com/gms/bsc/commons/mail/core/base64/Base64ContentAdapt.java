@@ -1,4 +1,4 @@
-package br.com.gms.bsc.commons.mail.base64;
+package br.com.gms.bsc.commons.mail.core.base64;
 
 import java.util.Base64;
 import java.util.Base64.Decoder;

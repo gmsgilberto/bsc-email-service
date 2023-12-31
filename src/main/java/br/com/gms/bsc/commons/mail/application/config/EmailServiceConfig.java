@@ -1,4 +1,4 @@
-package br.com.gms.bsc.commons.mail.config;
+package br.com.gms.bsc.commons.mail.application.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,7 +9,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import br.com.gms.bsc.commons.mail.core.service.SendEmailService;
-import br.com.gms.bsc.commons.mail.service.impl.javamail.SendEmailServiceJavaMail;
+import br.com.gms.bsc.commons.mail.service.impl.javamail.SendEmailServiceWithJavaMail;
 import br.com.gms.bsc.commons.mail.service.impl.queue.SendEmailServiceQueue;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -27,13 +27,13 @@ public class EmailServiceConfig {
 
 	@Bean
 	@Primary
-	SendEmailService emailSender(SendEmailServiceJavaMail sendEmailServiceImpl) {
+	SendEmailService emailSender(SendEmailServiceWithJavaMail sendEmailServiceImpl) {
 		return new SendEmailServiceQueue(sendEmailServiceImpl, this.jmsTemplate);
 	}
 	
 	@Bean
-	SendEmailServiceJavaMail sendEmailServiceImpl(final JavaMailSender javaMailSender) {
-		return new SendEmailServiceJavaMail(javaMailSender, this.emailFrom);
+	SendEmailServiceWithJavaMail sendEmailServiceImpl(final JavaMailSender javaMailSender) {
+		return new SendEmailServiceWithJavaMail(javaMailSender, this.emailFrom);
 	}
 	
 }

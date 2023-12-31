@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @AllArgsConstructor
-public class SendEmailServiceJavaMail extends SendEmailService {
+public class SendEmailServiceWithJavaMail extends SendEmailService {
 
 	private final JavaMailSender mailSender;
 	private final String from;

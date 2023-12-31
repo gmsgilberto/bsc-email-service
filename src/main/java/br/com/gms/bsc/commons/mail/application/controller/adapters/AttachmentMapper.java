@@ -1,8 +1,8 @@
-package br.com.gms.bsc.commons.mail.controller.adapters;
+package br.com.gms.bsc.commons.mail.application.controller.adapters;
 
 import org.springframework.stereotype.Component;
 
-import br.com.gms.bsc.commons.mail.controller.request.AttachmentRequest;
+import br.com.gms.bsc.commons.mail.application.controller.request.AttachmentRequest;
 import br.com.gms.bsc.commons.mail.core.model.Attachment;
 import lombok.AllArgsConstructor;
 
